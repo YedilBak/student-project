@@ -15,7 +15,7 @@ public class StudentController {
     @GetMapping(value = "/") //http://localhost:8080/
     public String getMain(Model m){
         m.addAttribute("stud", DBManager.getStudents());
-        return "main";
+        return "index";
     }
 
 

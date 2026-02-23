@@ -49,7 +49,6 @@ public class DBManager {
     }
 
     public static void deleteSt(int id) {
-
         list.removeIf(s-> s.getId()==id);
     }
 }
