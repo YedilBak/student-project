@@ -2,7 +2,6 @@ package kz.students.application.db;
 
 import kz.students.application.entity.Student;
 import lombok.Getter;
-import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
 
