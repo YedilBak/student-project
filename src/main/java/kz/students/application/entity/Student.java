@@ -15,6 +15,7 @@ public class Student {
     private String fullName;
     private String city;
     private double gpa;
+    private double height;
     private int age;
 
 

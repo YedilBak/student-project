@@ -12,6 +12,7 @@
             <th>CITY</th>
             <th>AGE</th>
             <th>GPA</th>
+            <th>HEIGHT</th>
             <th>DETAILS</th>
         </tr>
         </thead>
@@ -22,6 +23,7 @@
             <td th:text="${st.city}"></td>
             <td th:text="${st.age}"></td>
             <td th:text="${st.gpa}"></td>
+            <td th:text="${st.height}"></td>
             <td style="width: 7%"><a th:href="@{'/details/' + ${st.id}}" class="btn btn-secondary btn-sm">DETAILS</a>
             </td>
             <td></td>

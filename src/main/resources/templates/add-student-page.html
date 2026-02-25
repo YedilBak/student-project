@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="maket">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <div th:insert="links.html"></div>
 </head>
 <body>
-<div th:insert="nav.html"></div>
 
-<div class="container mt-3 ">
-    <div class="row justify-content-center">
-        <div class="col-6">
-            <form method="post" action="/add-student">
+<div layout:fragment="other_page">
+    <div class="col-6">
+        <form method="post" action="/add-student">
             <div class="row mt-3">
                 <div class="col-12">
                     <label>FULL NAME:</label>
@@ -19,7 +18,7 @@
             </div>
             <div class="row mt-3">
                 <div class="col-12">
-                   <input type="text" name="fullName" class="form-control" >
+                    <input type="text" name="fullName" class="form-control">
                 </div>
             </div>
             <div class="row mt-3">
@@ -29,7 +28,7 @@
             </div>
             <div class="row mt-3">
                 <div class="col-12">
-                    <input type="text" name="city" class="form-control" >
+                    <input type="text" name="city" class="form-control">
                 </div>
             </div>
             <div class="row mt-3">
@@ -39,7 +38,7 @@
             </div>
             <div class="row mt-3">
                 <div class="col-12">
-                    <input type="text" name="gpa" class="form-control" >
+                    <input type="text" name="gpa" class="form-control">
                 </div>
             </div>
             <div class="row mt-3">
@@ -58,8 +57,7 @@
                     <button class="btn btn-sm btn-success">ADD STUDENT</button>
                 </div>
             </div>
-            </form>
-        </div>
+        </form>
     </div>
 </div>
 

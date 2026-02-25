@@ -13,10 +13,10 @@ public class DBManager {
     private static ArrayList<Student> list = new ArrayList();
 
     static {
-        list.add(new Student(1, "Serik Serikov", "Astana", 2.0, 18));
-        list.add(new Student(2, "Berik Berikov", "Astana", 3.0, 19));
-        list.add(new Student(3, "Jerik Jerikov", "Shymkent", 3.5, 20));
-        list.add(new Student(4, "Kerik Kerikov", "Almaty", 4.0, 21));
+        list.add(new Student(1, "Serik Serikov", "Astana", 2.0, 180,  18));
+        list.add(new Student(2, "Berik Berikov", "Astana", 3.0, 180, 19));
+        list.add(new Student(3, "Jerik Jerikov", "Shymkent", 3.5, 180, 20));
+        list.add(new Student(4, "Kerik Kerikov", "Almaty", 4.0, 180, 21));
     }
 
     public static ArrayList<Student> getStudents(){
