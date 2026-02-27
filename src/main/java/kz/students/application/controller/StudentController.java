@@ -23,7 +23,7 @@ public class StudentController {
     @GetMapping(value = "/details/{id}")
     public String getStudent(@PathVariable int id,
                              Model m){
-        m.addAttribute("st", DBManager.getStudentById(id));
+        m.addAttribute("st", DBConnector.getStudentById(id));
         return "details";
     }
 
@@ -35,7 +35,7 @@ public class StudentController {
     @PostMapping(value = "/add-student")
     public String addStudent(Student student){
 
-        DBManager.addStudent(student);
+        DBConnector.addStudent(student);
 
         return "redirect:/";
     }
@@ -43,14 +43,14 @@ public class StudentController {
     @PostMapping(value = "/update")
     public String updateStudent(Student student){
 
-        DBManager.updateSt(student);
+        DBConnector.updateStudent(student);
 
         return "redirect:/";
     }
 
     @PostMapping(value = "/delete")
     public String deleteSt(@RequestParam int id){
-        DBManager.deleteSt(id);
+        DBConnector.deleteStudent(id);
         return "redirect:/";
     }
 
