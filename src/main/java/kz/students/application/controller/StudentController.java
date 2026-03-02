@@ -24,6 +24,7 @@ public class StudentController {
     public String getStudent(@PathVariable int id,
                              Model m){
         m.addAttribute("st", DBConnector.getStudentById(id));
+        m.addAttribute("uniki", DBConnector.getAllUniversities());
         return "details";
     }
 
@@ -42,8 +43,9 @@ public class StudentController {
 
     @PostMapping(value = "/update")
     public String updateStudent(Student student){
-
+        System.out.println(student.getUniversity().getId());
         DBConnector.updateStudent(student);
+
 
         return "redirect:/";
     }

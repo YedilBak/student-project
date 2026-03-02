@@ -58,6 +58,16 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-12">
+                            <select class="form-select" name="university.id">
+                                <option th:each="u: ${uniki}"
+                                        th:value="${u.id}"
+                                        th:text="${u.name}"
+                                        th:selected="${u.id==st.university.id}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
                             <button class="btn btn-sm btn-success">UPDATE STUDENT</button>
                         </div>
                     </div>

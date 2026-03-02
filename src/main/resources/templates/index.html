@@ -9,6 +9,7 @@
         <tr>
             <th>ID</th>
             <th>FULL NAME</th>
+            <th>UNIVERSITY</th>
             <th>CITY</th>
             <th>AGE</th>
             <th>GPA</th>
@@ -20,6 +21,7 @@
         <tr th:each="st :${stud}">
             <td th:text="${st.id}"></td>
             <td th:text="${st.fullName}"></td>
+            <td th:text="${st.university.name + '/' + st.university.countStudents}"></td>
             <td th:text="${st.city}"></td>
             <td th:text="${st.age}"></td>
             <td th:text="${st.gpa}"></td>

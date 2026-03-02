@@ -3,6 +3,7 @@ package kz.students.application.db;
 
 
 import kz.students.application.entity.Student;
+import kz.students.application.entity.University;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -31,7 +32,8 @@ public class DBConnector {
 
         try {
 
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM orda.students ORDER BY id ASC");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM orda.students st INNER JOIN " +
+                    "orda.universities u ON st.university_id = u.id ORDER BY st.id ASC");
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()){
@@ -42,6 +44,13 @@ public class DBConnector {
                 student.setHeight(resultSet.getDouble("height"));
                 student.setGpa(resultSet.getDouble("gpa"));
                 student.setFullName(resultSet.getString("full_name"));
+
+                University university = new University();
+                university.setId(resultSet.getInt("university_id"));
+                university.setName(resultSet.getString("name"));
+                university.setCountStudents(resultSet.getInt("count_students"));
+
+                student.setUniversity(university);
 
                 students.add(student);
             }
@@ -61,7 +70,8 @@ public class DBConnector {
         Student student = new Student();
 
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM orda.students WHERE id=?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM orda.students st INNER JOIN " +
+                    "orda.universities u ON st.university_id = u.id WHERE st.id=?");
             statement.setInt(1, id);
 
             ResultSet resultSet = statement.executeQuery();
@@ -73,6 +83,13 @@ public class DBConnector {
                 student.setHeight(resultSet.getDouble("height"));
                 student.setGpa(resultSet.getDouble("gpa"));
                 student.setFullName(resultSet.getString("full_name"));
+
+                University university = new University();
+                university.setId(resultSet.getInt("university_id"));
+                university.setName(resultSet.getString("name"));
+                university.setCountStudents(resultSet.getInt("count_students"));
+
+                student.setUniversity(university);
             }
 
             resultSet.close();
@@ -91,13 +108,14 @@ public class DBConnector {
         try {
 
             PreparedStatement statement = connection.prepareStatement("UPDATE orda.students SET full_name=?, " +
-                    "city=?, gpa=?, height=?, age=? WHERE id=?");
+                    "city=?, gpa=?, height=?, age=?, university_id=? WHERE id=?");
             statement.setString(1, student.getFullName());
             statement.setString(2, student.getCity());
             statement.setDouble(3, student.getGpa());
             statement.setDouble(4, student.getHeight());
             statement.setInt(5, student.getAge());
-            statement.setInt(6, student.getId());
+            statement.setInt(6, student.getUniversity().getId());
+            statement.setInt(7, student.getId());
 
             statement.executeUpdate();
             statement.close();
@@ -140,4 +158,31 @@ public class DBConnector {
     }
 
 
+    public static ArrayList<University> getAllUniversities() {
+
+        ArrayList<University>list  = new ArrayList();
+
+        try {
+
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM orda.universities");
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                University university = new University();
+                university.setId(resultSet.getInt("id"));
+                university.setName(resultSet.getString("name"));
+                university.setCountStudents(resultSet.getInt("count_students"));
+
+                list.add(university);
+            }
+
+            resultSet.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return list;
+    }
 }

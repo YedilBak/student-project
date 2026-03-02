@@ -17,6 +17,6 @@ public class Student {
     private double gpa;
     private double height;
     private int age;
-
+    private University university;
 
 }
