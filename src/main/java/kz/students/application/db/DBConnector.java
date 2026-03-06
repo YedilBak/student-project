@@ -4,6 +4,7 @@ package kz.students.application.db;
 
 import kz.students.application.entity.Student;
 import kz.students.application.entity.University;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+@Component
 public class DBConnector {
     private static Connection connection;
     private static String login = "postgres";
@@ -143,12 +145,13 @@ public class DBConnector {
 
         try {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO orda.students (full_name, city, " +
-                    "gpa, height, age) VALUES (?, ?, ?, ?, ?)");
+                    "gpa, height, age, university_id) VALUES (?, ?, ?, ?, ?, ?)");
             statement.setString(1, student.getFullName());
             statement.setString(2, student.getCity());
             statement.setDouble(3, student.getGpa());
             statement.setDouble(4, student.getHeight());
             statement.setInt(5, student.getAge());
+            statement.setInt(6, student.getUniversity().getId());
 
             statement.executeUpdate();
             statement.close();
